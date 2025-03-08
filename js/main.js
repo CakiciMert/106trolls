@@ -58,7 +58,7 @@ document.addEventListener('keydown', function(e) {
 function selim(n, f) { //sigfig + sci_notation
 	let nSig= Number(n.toPrecision(f));
 	let nExp = nSig.toExponential();
-	return nExp.replace(/e\+?/,'*10^');
+	return nExp.replace(/e([+-]?)(\d+)/, (match, sign, digits) => `*10@Sup{${sign === '-' ? '-' : ''}${digits}}`);
 }
 
 function mert(n, f) { //sigfig

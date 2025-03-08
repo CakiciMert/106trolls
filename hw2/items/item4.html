@@ -32,14 +32,25 @@
       <div class="inputs ">
         <h3>Inputs</h3>
 
+        <div class="input">
+          <input id="E" placeholder="electric field" type="text">
+        </div>
 
+        <div class="input">
+          <input id="l" placeholder="side length" type="text">
+        </div>
+
+        <button class="calculate-button " onclick="calculate()">Calculate</button>
 
       </div>
     <!----------------------------------------->
       <div class="answers ">
         <h3>Answers</h3>
 
-
+        <div>
+          PART A: <hr>
+          <div id="A"></div>
+        </div>
 
       </div>
     <!----------------------------------------->  
@@ -63,7 +74,13 @@
     <script>
 
         function calculate() {
+          var l = berkenn(document.getElementById('l').value);
+          var E = berkenn(document.getElementById('E').value);
 
+          var epsi = 8.854*pow(10, -3);
+          var A = E * sqr(l) * epsi;
+
+	        document.getElementById('A').innerHTML = mert(A, 2);
         }
 
     </script>

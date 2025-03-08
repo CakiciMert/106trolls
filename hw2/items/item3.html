@@ -32,14 +32,51 @@
       <div class="inputs ">
         <h3>Inputs</h3>
 
+        <div class="input">
+          <input id="r1" placeholder="r₁ (inner)" type="text" style="float: left; width: 0px;">
+          <input id="rho1" placeholder="ρ₁ (inner)" type="text" style="float: left; width: 0px;">
+        </div>
 
+        <div class="input">
+          <input id="r2" placeholder="r₂ (outer)" type="text" style="float: left; width: 0px;">
+          <input id="rho2" placeholder="ρ₂ (outer)" type="text" style="float: left; width: 0px;">
+        </div>
+
+        <button class="calculate-button " onclick="calculate()">Calculate</button>
 
       </div>
     <!----------------------------------------->
       <div class="answers ">
         <h3>Answers</h3>
 
+        <div>
+          PART A: <hr>
+          <div id="A"></div>
+        </div>
 
+        <div>
+          PART B: <hr>
+          <div id="B"></div>
+        </div>
+
+        <div>
+          PART C: <hr>
+          <div id="C"></div>
+        </div>
+
+        <div>
+          PART D: <hr>
+          <div>
+               <img class="img" src="./images/3D.png" width="450">
+          </div>
+        </div>
+
+        <div>
+          PART E: <hr>
+          <div>
+               <img class="img" src="./images/3E.png" width="450">
+          </div>
+        </div>
 
       </div>
     <!----------------------------------------->  
@@ -63,7 +100,20 @@
     <script>
 
         function calculate() {
+          var r1 = berkenn(document.getElementById('r1').value)/100;
+          var r2 = berkenn(document.getElementById('r2').value)/100;
+          var rho1 = berkenn(document.getElementById('rho1').value);
+          var rho2 = berkenn(document.getElementById('rho2').value);
 
+          var epsi = 8.854 * pow(10, -12);
+          var A = rho1/3/epsi;
+          var B1 = rho2/3/epsi;
+          var B2 = (rho1-rho2)*pow(r1, 3)/3/epsi;
+          var C = ((pow(r2, 3)-pow(r1, 3))*rho2 + pow(r1, 3)*rho1)/3/epsi;
+
+          document.getElementById('A').innerHTML = selim(A, 2) + "*r";
+          document.getElementById('B').innerHTML = "@DIV{" + selim(B1, 2) + "*r@Sup{3}" + selim(B2, 2) + ";r@Sup{2}}";
+          document.getElementById('C').innerHTML = "@DIV{" + selim(C, 2) + ";r@Sup{2}}";
         }
 
     </script>
