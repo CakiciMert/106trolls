@@ -32,14 +32,40 @@
       <div class="inputs ">
         <h3>Inputs</h3>
 
+        <div class="input">
+          <input id="R1" placeholder="R₁ (cm)" type="text" style="float: left; width: 0px;">
+          <input id="R2" placeholder="R₂ (cm)" type="text" style="float: left; width: 0px;">
+        </div>
 
+        <div class="input">
+          <input id="Q1" placeholder="Q₁ (nC)" type="text" style="float: left; width: 0px;">
+          <input id="Q2" placeholder="Q₂ (nC)" type="text" style="float: left; width: 0px;">
+        </div>
+        
+        <div class="input">
+          <input id="l" placeholder="length of shells" type="text">
+        </div>
+
+        <div class="input">
+          <input id="R3" placeholder="R3 (revelation)" type="text">
+        </div>
+
+        <button class="calculate-button " onclick="calculate()">Calculate</button>
 
       </div>
     <!----------------------------------------->
       <div class="answers ">
         <h3>Answers</h3>
 
+        <div>
+          PART A: <hr>
+          <div id="A"></div>
+        </div>
 
+        <div>
+          PART B: <hr>
+          <div id="B"></div>
+        </div>
 
       </div>
     <!----------------------------------------->  
@@ -63,7 +89,23 @@
     <script>
 
         function calculate() {
+          var R1 = berkenn(document.getElementById('R1').value)/100;
+          var R2 = berkenn(document.getElementById('R2').value)/100;
+          var R3 = berkenn(document.getElementById('R3').value)/100;
+          var Q1 = berkenn(document.getElementById('Q1').value)/pow(10, 9);
+          var Q2 = berkenn(document.getElementById('Q2').value)/pow(10, 9);
+          var l = berkenn(document.getElementById('l').value);
 
+          var epsi = 8.854*pow(10, -12);
+          var me = 9.1*pow(10, -31);
+          var mp = 1.67*pow(10, -27);
+          var ch = -1.6*pow(10, -19);
+
+          var A = sqrt(ch*Q1/(2*Math.PI*l*epsi)*Math.log(R2/R1)/(me/2));
+          var B = sqrt(R3*ch*Q1/(2*Math.PI*R3*l*epsi*mp));
+
+          document.getElementById('A').innerHTML = selim(A, 2) + " m/s";
+          document.getElementById('B').innerHTML = selim(B, 2) + " m/s";
         }
 
     </script>
